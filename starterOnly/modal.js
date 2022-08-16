@@ -88,6 +88,11 @@ spanErrorQuantity.classList.add('textError');
 let spanErrorCheckbox = document.createElement('span');
 checkboxLocation.appendChild(spanErrorCheckbox);
 spanErrorCheckbox.classList.add('textError');
+spanErrorCheckbox.innerHTML = "Vous devez choisir une option."
+if(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
+  spanErrorCheckbox.innerHTML = "";
+}
+
 
 // Création des écoutes d'évènements
 //==================================================================
@@ -98,7 +103,7 @@ first.addEventListener('input', function(e){
 
     if(firstValue == ''){
       
-      spanErrorFirst.innerHTML = "Veuillez renseigner un prénom";
+      spanErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
 
     } else if(!firstValue.match(firstRegex)){   
           
@@ -117,7 +122,7 @@ last.addEventListener('input', function(e){
 
     if(lastValue == ''){
       
-      spanErrorLast.innerHTML = "Veuillez renseigner un Nom";
+      spanErrorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 
     } else if(!lastValue.match(firstRegex)){   
           
@@ -163,7 +168,7 @@ birthdate.addEventListener('input', function(e){
 
     if(days <= 0){
       
-      spanErrorBirthdate.innerHTML = "Veuillez renseigner votre date de naissance";
+      spanErrorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
       return birthdateValue = false;
 
     } else if (!birthdateValue == dateRegex || days <= 0 || days > 43800){ // Ajout d'une valeur max(minimum) de 120ans (Peut-être qu'à 120 ans on peut encore jouer...)
@@ -209,8 +214,10 @@ quantity.addEventListener('input', function(e){
 
 checkboxLocation.addEventListener('change', function(event){
   let check = event.target.value;
+  
 
   if(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
+    spanErrorCheckbox.innerHTML = ""
     return check = true;
     
   } else {
