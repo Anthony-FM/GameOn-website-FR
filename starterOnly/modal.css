@@ -536,6 +536,10 @@ footer {
   line-height: 142.6%;
   /* or 14px */
 
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+
   display: flex;
   align-items: center;
 
