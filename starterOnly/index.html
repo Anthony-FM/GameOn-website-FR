@@ -61,7 +61,7 @@
           <div class="modal-body">
 
             <!-- Formulaire -->
-            <form name="reserve" id="reserve" action="index.html" method="get" >
+            <form name="reserve" action="index.html" method="get" onsubmit=" return validate(event)">
               <!-- Prénom -->
               <div class="formData">
                 <label for="first">Prénom</label><br>
@@ -141,7 +141,7 @@
 
               <!-- Checkbox Condition d'utilisation & newsletter prochains évènements -->
               <div class="formData">
-                <input class="checkbox-input" type="checkbox" id="checkbox1" checked required/> <!--Obligatoire-->
+                <input class="checkbox-input" type="checkbox" id="checkbox1" required/> <!--Obligatoire-->
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
