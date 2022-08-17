@@ -98,6 +98,7 @@ if(location1.checked || location2.checked || location3.checked || location4.chec
 let spanErrorCondition = document.createElement('span');
 checkboxCondition.nextElementSibling.appendChild(spanErrorCondition);
 spanErrorCondition.classList.add('textError');
+spanErrorCondition.innerHTML = "Ce champ est obligatoire";
 
 
 // Création des écoutes d'évènements
@@ -263,7 +264,7 @@ function validate(event){
     function closeModal(){    
       return modalbg.style.display = "none";
     }
-  }
+  } 
   console.log("prénom: " + firstTest + " nom: " + lastTest + " email: " + emailTest + " anniversaire: " + daysTest + 
               " quantité: " + quantityTest  + " check " + checkTest + "condition: " + conditionTest)
 }
