@@ -36,7 +36,7 @@ function closeModal(){
 //Variable du formulaire
 //=================================================================
 
-let first = document.getElementById("first");
+const first = document.getElementById("first");
 const last = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
@@ -51,7 +51,7 @@ const location6 = document.getElementById("location6");
 
 // constante RegExp
 //==================================================================
-const firstRegex = /^[a-zA-Zéèîïêë]+$/g; // RegExp pour les Prénoms et Noms
+const firstRegex = /^([a-zA-Zéèîïêë]{2,})+$/g; // RegExp pour les Prénoms et Noms
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // RegExp pour les adresses emails
 const dateRegex = /^([0-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})\/([0-2]{1}[0-9]{1}|30|31)/g // RegExp pour les dates
 const quantityRegex = /\d{1,2}/; // RegExp pour la quantitée allant de 0 à 99;
@@ -97,64 +97,82 @@ if(location1.checked || location2.checked || location3.checked || location4.chec
 // Création des écoutes d'évènements
 //==================================================================
 
-
+let firstTest;
 first.addEventListener('input', function(e){  
   let firstValue = e.target.value; 
+  
 
     if(firstValue == ''){
       
       spanErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+      firstTest = false;
 
     } else if(!firstValue.match(firstRegex)){   
           
       spanErrorFirst.innerHTML = "Ce champ requiere une prénom valide"; 
+      firstTest = false;
 
     } else if(firstValue.match(firstRegex)){
 
       spanErrorFirst.innerHTML = "";  
+      firstTest = true;
     }
 
-    return first;
+    console.log("First name: "+ firstTest);
+    return firstTest;
 })
 
+let lastTest;
 last.addEventListener('input', function(e){  
   let lastValue = e.target.value; 
+  
 
     if(lastValue == ''){
       
       spanErrorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+      lastTest = false;
 
     } else if(!lastValue.match(firstRegex)){   
           
       spanErrorLast.innerHTML = "Ce champ requiere une nom valide"; 
+      lastTest = false;
 
     } else if(lastValue.match(firstRegex)){
 
-      spanErrorLast.innerHTML = "";  
+      spanErrorLast.innerHTML = ""; 
+      lastTest = true; 
     }
 
-    return last;
+    console.log("Last name: "+ lastTest);
+    return lastTest;
 })
 
+let emailTest;
 email.addEventListener('input', function(e){  
   let emailValue = e.target.value; 
+  
 
     if(emailValue == ''){
       
       spanErrorEmail.innerHTML = "Veuillez renseigner un Email";
+      emailTest = false;
 
     } else if(!emailValue.match(emailRegex)){   
           
       spanErrorEmail.innerHTML = "Ce champ requiere un email valide"; 
+      emailTest = false;
 
     } else if(emailValue.match(emailRegex)){
 
-      spanErrorEmail.innerHTML = "";  
+      spanErrorEmail.innerHTML = "";
+      emailTest = true;  
     }
 
-    return email;
+    console.log("email: "+ emailTest);
+    return emailTest;
 })
 
+let daysTest;
 birthdate.addEventListener('input', function(e){  
   let birthdateValue = new Date(e.target.value);  // récupération de la valeur entré par l'utilisateur 
   // console.log(birthdateValue);
@@ -165,75 +183,88 @@ birthdate.addEventListener('input', function(e){
   let days = Math.floor(diff/(1000 * 3600 * 24)) // convertion des milliseconde en jour
   // console.log(days);
   
+  
 
     if(days <= 0){
       
       spanErrorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
-      return birthdateValue = false;
+      daysTest = false;
 
-    } else if (!birthdateValue == dateRegex || days <= 0 || days > 43800){ // Ajout d'une valeur max(minimum) de 120ans (Peut-être qu'à 120 ans on peut encore jouer...)
+    } else if (!birthdateValue == dateRegex || days < 0 || days > 43800){ // Ajout d'une valeur max(minimum) de 120ans (Peut-être qu'à 120 ans on peut encore jouer...)
 
       spanErrorBirthdate.innerHTML = "Veuillez entrer une date valide";
-      return birthdateValue = false;
+      daysTest = false;
 
     } else if(days < 6570 ){ // 18 années = 6570 jour ! 
           
       spanErrorBirthdate.innerHTML = "Vous êtes trop jeune pour vous inscrire aux jeux"; 
-      return birthdateValue = false;
+      daysTest = false;
 
     } else if(days >= 6570){
 
       spanErrorBirthdate.innerHTML = "";  
-      return birthdateValue = true;
+      daysTest = true;
     }
 
-    return birthdateValue;
+    console.log("birthdate: "+ daysTest)
+    return daysTest;
 })
 
+let quantityTest;
 quantity.addEventListener('input', function(e){  
   let quantityValue = e.target.value; 
+  
 
     if(quantityValue == ''){
       
       spanErrorQuantity.innerHTML = "Veuillez renseigner une quantitée";
-      return quantityValue = false;
+      quantityTest = false;
 
     } else if(!quantityValue.match(quantityRegex) || (quantityValue > 99)){   
           
       spanErrorQuantity.innerHTML = "Ce champ requiere une quantitée raisonnable"; 
-      return quantityValue = false;
+      quantityTest = false;
 
     } else if(quantityValue >= 0 && quantityValue <= 99 && quantityValue.match(quantityRegex)){
 
       spanErrorQuantity.innerHTML = ""; 
-      return quantityValue = true; 
+      quantityTest = true; 
     }
 
-   console.log(quantity);
+   console.log("quantité: "+quantityTest);
+   return quantityTest;
 })
 
+let checkTest;
 checkboxLocation.addEventListener('change', function(event){
   let check = event.target.value;
+  
   
 
   if(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
     spanErrorCheckbox.innerHTML = ""
-    return check = true;
+    checkTest = true;
     
   } else {
     spanErrorCheckbox.innerHTML = "Veuillez renseigner une ville";
-    return check = false;
+    checkTest = false;
   }
+
+  console.log("checkbox: " + checkTest);
+  return check;
   
 })
 
-document.forms["reserve"].addEventListener('submit', function validate(e){
+document.getElementById("reserve").addEventListener('submit', function validate(e){
+  if(firstTest == true && lastTest == true && emailTest == true && daysTest == true && quantityTest == true && checkTest == true){    
+    reserve.innerHTML = '<p class="paragrapheCloseModal">Merci pour <br/> votre inscription</p> <br/> <button id="secondClose" class="closeButton">fermer</button>';
+    document.getElementById("secondClose").addEventListener("click", closeModal);    
+    function closeModal(){    
+      return modalbg.style.display = "none";
+    }
+  } 
+  
   e.preventDefault();
   e.stopPropagation();
-  reserve.innerHTML = '<p class="paragrapheCloseModal">Merci pour <br/> votre inscription</p> <br/> <button id="secondClose" class="closeButton">fermer</button>';
-  document.getElementById("secondClose").addEventListener("click", closeModal);
-  function closeModal(){    
-    return modalbg.style.display = "none";
-  }
   
 })
