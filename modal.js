@@ -53,7 +53,7 @@ const checkboxCondition = document.getElementById("checkbox1");
 // constante RegExp
 //==================================================================
 const firstRegex = /^([a-zA-Zéèîïêë]{2,})+$/g; // RegExp pour les Prénoms et Noms
-const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // RegExp pour les adresses emails
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; // RegExp pour les adresses emails
 const dateRegex = /^([0-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})\/([0-2]{1}[0-9]{1}|30|31)/g // RegExp pour les dates
 const quantityRegex = /\d{1,2}/; // RegExp pour la quantitée allant de 0 à 99;
 
