@@ -6,7 +6,6 @@ function editNav() {
     x.className = "topnav";
   }
 }
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -265,7 +264,6 @@ function validate(event){
     function closeModal1(){    
       modalbg.style.display = "none";
       location.reload();
-
     }
       
   } 
@@ -289,8 +287,8 @@ function validate(event){
   }
   if (!checkboxCondition.checked) {  spanErrorCondition.innerHTML = "Ce champ est obligatoire";
 }
-  
-
   console.log("prénom: " + firstTest + " nom: " + lastTest + " email: " + emailTest + " anniversaire: " + daysTest + 
               " quantité: " + quantityTest  + " check " + checkTest + " condition: " + conditionTest);
 }
+
+// test git
