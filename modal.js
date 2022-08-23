@@ -89,22 +89,22 @@ spanErrorQuantity.classList.add('textError');
 let spanErrorCheckbox = document.createElement('span');
 checkboxLocation.appendChild(spanErrorCheckbox);
 spanErrorCheckbox.classList.add('textError');
-spanErrorCheckbox.innerHTML = "Vous devez choisir une option."
-if(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
-  spanErrorCheckbox.innerHTML = "";
-}
+// spanErrorCheckbox.innerHTML = "Vous devez choisir une option."
+// if(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked){
+//   spanErrorCheckbox.innerHTML = "";
+// }
 
 // Erreur Checkbox Condition
 let spanErrorCondition = document.createElement('span');
 checkboxCondition.nextElementSibling.appendChild(spanErrorCondition);
 spanErrorCondition.classList.add('textError');
-spanErrorCondition.innerHTML = "Ce champ est obligatoire";
+// spanErrorCondition.innerHTML = "Ce champ est obligatoire";
 
 
 // Création des écoutes d'évènements
 //==================================================================
 
-let firstTest;
+let firstTest = false;
 first.addEventListener('input', function(event){  
   let firstValue = event.target.value;   
 
@@ -125,7 +125,7 @@ first.addEventListener('input', function(event){
     return firstTest;
 })
 
-let lastTest;
+let lastTest = false;
 last.addEventListener('input', function(event){  
   let lastValue = event.target.value;   
 
@@ -146,7 +146,7 @@ last.addEventListener('input', function(event){
     return lastTest;
 })
 
-let emailTest;
+let emailTest = false;
 email.addEventListener('input', function(event){  
   let emailValue = event.target.value; 
 
@@ -167,7 +167,7 @@ email.addEventListener('input', function(event){
     return emailTest;
 })
 
-let daysTest;
+let daysTest = false;
 birthdate.addEventListener('input', function(event){  
   let birthdateValue = new Date(event.target.value);  // récupération de la valeur entré par l'utilisateur 
   // console.log(birthdateValue);
@@ -200,7 +200,7 @@ birthdate.addEventListener('input', function(event){
     return daysTest;
 })
 
-let quantityTest;
+let quantityTest = false;
 quantity.addEventListener('input', function(event){  
   let quantityValue = event.target.value; 
 
@@ -223,7 +223,7 @@ quantity.addEventListener('input', function(event){
    return quantityTest;
 })
 
-let checkTest;
+let checkTest = false;
 checkboxLocation.addEventListener('change', function(event){
   let check = event.target.value;
 
@@ -240,7 +240,7 @@ checkboxLocation.addEventListener('change', function(event){
   return check;  
 })
 
-let conditionTest;
+let conditionTest = false;
 checkboxCondition.addEventListener('change', function(e){  
     if(!checkboxCondition.checked){      
       spanErrorCondition.innerHTML = "Ce champ est obligatoire";
@@ -258,13 +258,35 @@ function validate(event){
   event.preventDefault();
   event.stopPropagation();
 
-  if(firstTest && lastTest && emailTest && daysTest && quantityTest && checkTest && conditionTest){    
+  if(firstTest == true && lastTest && emailTest && daysTest && quantityTest && checkTest && conditionTest){    
     reserve.innerHTML = '<p class="paragrapheCloseModal">Merci pour <br/> votre inscription</p> <br/> <button id="secondClose" class="closeButton">fermer</button>';
     document.getElementById("secondClose").addEventListener("click", closeModal);    
     function closeModal(){    
       return modalbg.style.display = "none";
     }
   } 
+  if(!first.value) {
+    spanErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+  }
+  if(!last.value){
+    spanErrorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+  }
+  if (!email.value) {
+      spanErrorEmail.innerHTML = "Veuillez renseigner un Email";
+  }
+  if (!birthdate.value) {
+    spanErrorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
+  }
+  if (!quantity.value) {
+    spanErrorQuantity.innerHTML = "Veuillez renseigner une quantitée";
+  }
+  if (!checkboxLocation.value) {  
+    spanErrorCheckbox.innerHTML = "Veuillez renseigner une ville";
+  }
+  if (!checkboxCondition.checked) {  spanErrorCondition.innerHTML = "Ce champ est obligatoire";
+}
+  
+
   console.log("prénom: " + firstTest + " nom: " + lastTest + " email: " + emailTest + " anniversaire: " + daysTest + 
               " quantité: " + quantityTest  + " check " + checkTest + "condition: " + conditionTest)
 }
