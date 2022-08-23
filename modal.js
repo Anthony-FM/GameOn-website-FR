@@ -258,12 +258,16 @@ function validate(event){
   event.preventDefault();
   event.stopPropagation();
 
-  if(firstTest == true && lastTest && emailTest && daysTest && quantityTest && checkTest && conditionTest){    
+  if(firstTest && lastTest && emailTest && daysTest && quantityTest && checkTest && conditionTest){
+    
     reserve.innerHTML = '<p class="paragrapheCloseModal">Merci pour <br/> votre inscription</p> <br/> <button id="secondClose" class="closeButton">fermer</button>';
-    document.getElementById("secondClose").addEventListener("click", closeModal);    
-    function closeModal(){    
-      return modalbg.style.display = "none";
+    document.getElementById("secondClose").addEventListener("click", closeModal1);    
+    function closeModal1(){    
+      modalbg.style.display = "none";
+      location.reload();
+
     }
+      
   } 
   if(!first.value) {
     spanErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
@@ -280,7 +284,7 @@ function validate(event){
   if (!quantity.value) {
     spanErrorQuantity.innerHTML = "Veuillez renseigner une quantitée";
   }
-  if (!checkboxLocation.value) {  
+  if (!(location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked)) {  
     spanErrorCheckbox.innerHTML = "Veuillez renseigner une ville";
   }
   if (!checkboxCondition.checked) {  spanErrorCondition.innerHTML = "Ce champ est obligatoire";
@@ -288,5 +292,5 @@ function validate(event){
   
 
   console.log("prénom: " + firstTest + " nom: " + lastTest + " email: " + emailTest + " anniversaire: " + daysTest + 
-              " quantité: " + quantityTest  + " check " + checkTest + "condition: " + conditionTest)
+              " quantité: " + quantityTest  + " check " + checkTest + " condition: " + conditionTest);
 }
