@@ -258,15 +258,33 @@ function validate(event){
   event.stopPropagation();
 
   if(firstTest && lastTest && emailTest && daysTest && quantityTest && checkTest && conditionTest){
-    
+    // On supprime les données une fois que c'est validé et la page rafraichit
+    first.value = "";
+    last.value = "";
+    email.value = "";
+    birthdate.value = "";
+    quantity.value = "";
+    checkboxCondition.checked = false; 
+    location1.checked = false;
+    location2.checked = false;
+    location3.checked = false;
+    location4.checked = false;
+    location5.checked = false;
+    location6.checked = false;
+
+    // On crée un nouveau modal de remerciement
     reserve.innerHTML = '<p class="paragrapheCloseModal">Merci pour <br/> votre inscription</p> <br/> <button id="secondClose" class="closeButton">fermer</button>';
-    document.getElementById("secondClose").addEventListener("click", closeModal1);    
+    document.getElementById("secondClose").addEventListener("click", closeModal1);   
+     // Création de la fermeture du modale remerciement
     function closeModal1(){    
       modalbg.style.display = "none";
       location.reload();
-    }
+      return;
+    }  
       
   } 
+
+  // Si les valeurs ne sont pas remplie avant la validation, on averti l'utilisateur
   if(!first.value) {
     spanErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
   }
@@ -287,8 +305,8 @@ function validate(event){
   }
   if (!checkboxCondition.checked) {  spanErrorCondition.innerHTML = "Ce champ est obligatoire";
 }
+
+//test d'erreur lors de la validation
   console.log("prénom: " + firstTest + " nom: " + lastTest + " email: " + emailTest + " anniversaire: " + daysTest + 
               " quantité: " + quantityTest  + " check " + checkTest + " condition: " + conditionTest);
 }
-
-// test git
