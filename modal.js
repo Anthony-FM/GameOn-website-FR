@@ -19,14 +19,18 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  document.querySelector(".content").classList.remove("modalClose")
 }
 
 // Close span 'close'
 close.addEventListener("click", closeModal);
 
 function closeModal(){
+  document.querySelector(".content").classList.add("modalClose")
   
-  return modalbg.style.display = "none";
+  setTimeout(() => {
+    modalbg.style.display = "none";
+  }, 750);
 }
 
 // FORMULAIRE
